@@ -38,9 +38,9 @@ ip link set dev <iface> xdp off
 ```
 
 ## TODO
-Userspace programs<br>
-More complex examples
-Utilize any readily available upstream packages (compatibility issues?)
+-- Userspace programs<br>
+--More complex examples<br>
+--Utilize any readily available upstream packages (compatibility issues?)<br>
   - libbpf :- A mirror of bpf-next linux tree
   - libxdp :- libxdp library for managing XDP programs
   - xdp-tools :- Utilities and example programs for use with XDP
