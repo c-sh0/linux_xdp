@@ -2,7 +2,7 @@
 Linux XDP (eXpress Data Path)
 
 ## Description
-Test enviorment for building XDP programs. eBPF/XDP is actively being developed and the process for building/installing applications will certainly change.
+Test enviorment for building XDP programs. eBPF/XDP is in active development and the process for building/installing applications will certainly change.
 
 Tested on:
 - CentOS 8.3.2011
