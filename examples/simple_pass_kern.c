@@ -1,6 +1,6 @@
 /*
  *
- * Simple xdp program pass all connections,
+ * Simple xdp program pass all traffic
  * bpf_printk() messages are written to /sys/kernel/debug/tracing/trace_pipe
  *
  */
