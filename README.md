@@ -25,7 +25,7 @@ make
 ```
 
 ## Attaching the programs
-- Using iproute (Note: iproute may not have bpf/xdp capabilities on older systems)
+- Using iproute (Note: iproute does not have bpf/xdp capabilities on some older systems)
 ```
 # <section> (see the SEC() name in /path/to/xdp_prog_file.c)
 ip link set dev lo xdp obj </path/to/xdp_prog_file.o> sec <section name>
