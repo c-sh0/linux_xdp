@@ -92,7 +92,7 @@ void parse_cmdline_args(int argc, char **argv,
 	}
 
 	/* Parse commands line args */
-	while ((opt = getopt_long(argc, argv, "hd:r:L:R:ASNFUMQ:czpq",
+	while ((opt = getopt_long(argc, argv, "hd:r:L:R:ASNFUMQo:czpq",
 				  long_options, &longindex)) != -1) {
 		switch (opt) {
 		case 'd':
@@ -124,6 +124,13 @@ void parse_cmdline_args(int argc, char **argv,
 						errno, strerror(errno));
 				goto error;
 			}
+			break;
+		case 'o':
+			if (strlen(optarg) >= FILE_NAMESZ) {
+				fprintf(stderr, "ERR: --object name too long\n");
+				goto error;
+			}
+			snprintf(cfg->obj_filename, FILE_NAMESZ, "%s", optarg);
 			break;
 		case 'A':
 			cfg->xdp_flags &= ~XDP_FLAGS_MODES;    /* Clear flags */

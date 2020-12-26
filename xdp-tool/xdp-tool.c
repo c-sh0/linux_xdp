@@ -19,6 +19,9 @@ static const struct option_wrapper long_options[] = {
 	{{"help",        no_argument,		NULL, 'h' },
 	 "Show help", false},
 
+	{{"object",        no_argument,		NULL, 'o' },
+	 "Path to XDP object file", false},
+
 	{{"dev",         required_argument,	NULL, 'd' },
 	 "Operate on device <ifname>", "<ifname>", true},
 
@@ -127,8 +130,8 @@ int main(int argc, char **argv)
 {
 	struct bpf_prog_info info = {};
 	__u32 info_len = sizeof(info);
-	char filename[256] = "xdp_pass_kern.o";
 	int prog_fd, err;
+
 
 	struct config cfg = {
 		.xdp_flags = XDP_FLAGS_UPDATE_IF_NOEXIST | XDP_FLAGS_DRV_MODE,
@@ -147,9 +150,9 @@ int main(int argc, char **argv)
 		return xdp_link_detach(cfg.ifindex, cfg.xdp_flags);
 
 	/* Load the BPF-ELF object file and get back first BPF_prog FD */
-	prog_fd = load_bpf_object_file__simple(filename);
+	prog_fd = load_bpf_object_file__simple(cfg.obj_filename);
 	if (prog_fd <= 0) {
-		fprintf(stderr, "ERR: loading file: %s\n", filename);
+		fprintf(stderr, "ERR: loading file: %s\n", cfg.obj_filename);
 		return EXIT_FAIL_BPF;
 	}
 
