@@ -8,7 +8,7 @@ Modified copy of `basic01-xdp-pass/xdp_pass_user.c` from the [xdp-tutorial](http
 Usage: ./xdp-tool [options]
 
 DOCUMENTATION:
- Simple XDP prog doing XDP_PASS
+ Simple program to manage XDP programs
 
 Required options:
  -d, --dev <ifname>         Operate on device <ifname>
