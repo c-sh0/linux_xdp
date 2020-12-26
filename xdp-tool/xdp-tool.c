@@ -1,5 +1,5 @@
 /* SPDX-License-Identifier: GPL-2.0 */
-static const char *__doc__ = "Simple XDP prog doing XDP_PASS\n";
+static const char *__doc__ = "Simple program to manage XDP programs\n";
 
 #include <stdio.h>
 #include <stdlib.h>
