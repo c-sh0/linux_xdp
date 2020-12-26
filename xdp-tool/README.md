@@ -24,9 +24,9 @@ Other options:
 ```
 ## Notes
 You may need to increase max locked memory user limit
-``
+```
 ulimit -l unlimited
-``
+```
 
 ## TODO
 - Additional modifications
