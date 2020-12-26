@@ -2,13 +2,13 @@ LLC	?= llc
 CLANG	?= clang
 CC	:= gcc
 
+SRC_DIRS   = examples xdp-tool
+
 LIBBPF_DIR   ?= libbpf
 LIBBPF_SRC   ?= $(LIBBPF_DIR)/src/
 LIBBPF_BUILD ?= $(LIBBPF_DIR)/bpf
 
-EXAMPLES_DIR ?= examples
-
-all: build_libbpf build_examples
+all: build_libbpf build_progs 
 
 # libbpf build/install location ./libbpf/bpf
 build_libbpf:
@@ -20,11 +20,17 @@ build_libbpf:
 		cd $(LIBBPF_SRC) && PREFIX=/bpf DESTDIR=../ $(MAKE) install; \
 	fi
 
-build_examples: build_libbpf
-	$(MAKE) -C $(EXAMPLES_DIR)
-
+build_progs:
+	@for dir in $(SRC_DIRS); do\
+		echo Making all in $$dir... ;\
+		(cd $$dir ; make) || exit 1;\
+	done
+	
 clean:
-	$(MAKE) -C $(EXAMPLES_DIR) clean
 	cd $(LIBBPF_SRC) && $(MAKE) clean
 	rm -rf $(LIBBPF_BUILD)
+	@for dir in $(SRC_DIRS); do\
+		(cd $$dir ; make clean) || exit 1;\
+	done
+	
 
