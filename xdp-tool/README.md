@@ -1,8 +1,8 @@
 # xdp-tool
-Simple program to manage XDP programs 
+Simple program to manage XDP programs
 
 ## Description
-Modified copy of `basic01-xdp-pass/xdp_pass_user.c` from the [xdp-tutorial](https://github.com/xdp-project/xdp-tutorial) repository. 
+Modified copy of `basic01-xdp-pass/xdp_pass_user.c` from the [xdp-tutorial](https://github.com/xdp-project/xdp-tutorial) repository.
 
 ```
 Usage: ./xdp-tool [options]
@@ -22,7 +22,12 @@ Other options:
  -F, --force                Force install, replacing existing program on interface
  -U, --unload               Unload XDP program instead of loading
 ```
+## Notes
+You may need to increase max locked memory user limit
+``
+ulimit -l unlimited
+``
 
-## TODO 
+## TODO
 - Additional modifications
 
