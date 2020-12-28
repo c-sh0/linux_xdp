@@ -5,6 +5,7 @@ Linux XDP (eXpress Data Path)
 Test enviorment for building XDP programs. eBPF/XDP is in active development and the process for building/installing applications has and will certainly change.
 
 Tested on:
+- VirtialBox VM (Memory: 2GB)
 - CentOS 8.3.2011
 - kernel-ml-5.10.2-1.el8.elrepo
 
@@ -37,13 +38,21 @@ ip link show dev <iface>
 ip link set dev <iface> xdp off
 ```
 
+## Build libbpf-devel package
+Build a RPM
+- rpmbuild: `yum install rpm-build`
+```
+make package
+yum localinstall ./rpmbuild/RPMS/x86_64/libbpf-devel-0.1.0-1.x86_64.rpm
+```
+
 ## TODO
-Userspace programs.<br>
-More complex examples.<br>
-Utilize any of the following upstream packages (incomplete? compatibility issues?).<br>
-  - libbpf :- A mirror of bpf-next linux tree
+- Userspace programs
+- More complex examples
+- Utilize any of the following upstream packages (compatibility issues?)
+  - libbpf :- A mirror of bpf-next linux tree (incomplete?)
   - libxdp :- libxdp library for managing XDP programs
-  - xdp-tools :- Utilities and example programs for use with XDP
+  - xdp-tools :- XDP utilities (broken: https://github.com/xdp-project/xdp-tools/issues/82)
 
 ## References
  1. [BPF/libbpf](https://github.com/libbpf/libbpf) - Mirror of bpf-next Linux source tree's tools/lib/bpf
