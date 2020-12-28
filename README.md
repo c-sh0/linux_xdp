@@ -40,8 +40,8 @@ ip link set dev <iface> xdp off
 
 ## Build libbpf-devel package
 Build a RPM
-- rpmbuild: `yum install rpm-build`
 ```
+yum install rpm-build
 make package
 yum localinstall ./rpmbuild/RPMS/x86_64/libbpf-devel-0.1.0-1.x86_64.rpm
 ```
