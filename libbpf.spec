@@ -44,5 +44,5 @@ supporting headers for developing applications that use libbpf
 %post
 
 %changelog
-* Fri Sep 13 2019 Jiri Olsa <jolsa@redhat.com> - 0.0.3-1
-- Initial release
+* Mon Dec 28 2020 csh <csh.c0s0h0@gmail.com>
+- libbpf-devel (kernel-ml)
