@@ -2,13 +2,26 @@ LLC	?= llc
 CLANG	?= clang
 CC	:= gcc
 
-SRC_DIRS   = examples xdp-tool
+SRC_DIRS = examples
 
 LIBBPF_DIR   ?= libbpf
 LIBBPF_SRC   ?= $(LIBBPF_DIR)/src/
 LIBBPF_BUILD ?= $(LIBBPF_DIR)/bpf
 
-all: build_libbpf build_progs 
+# rpm package info
+SPEC_FILE	   = libbpf.spec
+RPM_BUILD_DIR	   = rpmbuild
+PKG_NAME	   = $$(awk '/^Name:/ {print $$2}' $(SPEC_FILE))
+PKG_VERSION	   = $$(awk '/^Version:/ {print $$2}' $(SPEC_FILE))
+PKG_ARCHIVE	   = $(PKG_NAME)-$(PKG_VERSION).tar.gz
+PKG_BUILD_UID	   = $(shell id -u -n)
+PKG_BUILD_GIT_USER = $(shell git config user.email)
+PKG_BUILD_HOST	   = $(shell uname -n)
+PKG_BUILD_DATE	   = $(shell date +%s)
+PKG_BUILD_COMMIT   = $(shell cd $(LIBBPF_DIR) && git --no-pager describe --always --dirty --abbrev=40)
+PKG_BUILD_GIT_MSG  = $(shell cd $(LIBBPF_DIR) && git log -n 1 --pretty=format:"%s")
+
+all: build_libbpf build_progs
 
 # libbpf build/install location ./libbpf/bpf
 build_libbpf:
@@ -22,15 +35,26 @@ build_libbpf:
 
 build_progs:
 	@for dir in $(SRC_DIRS); do\
-		echo Making all in $$dir... ;\
-		(cd $$dir ; make) || exit 1;\
+		if [ -d $$dir ]; then \
+			echo Making all in $$dir... ;\
+			(cd $$dir ; make) || exit 1;\
+		fi \
 	done
-	
+
 clean:
 	cd $(LIBBPF_SRC) && $(MAKE) clean
-	rm -rf $(LIBBPF_BUILD)
+	rm -rf $(LIBBPF_BUILD) $(RPM_BUILD_DIR)
 	@for dir in $(SRC_DIRS); do\
-		(cd $$dir ; make clean) || exit 1;\
+		if [ -d $$dir ]; then \
+			(cd $$dir ; make clean) || exit 1;\
+		fi \
 	done
-	
 
+# build libbpf-devel package
+package: clean
+	$(shell mkdir -p ./$(RPM_BUILD_DIR)/{BUILD,RPMS,SOURCES,SPECS,SRPMS})
+	$(shell cp -f $(SPEC_FILE) ./$(RPM_BUILD_DIR)/SPECS/)
+	$(shell tar --transform "s/^.\/$(LIBBPF_DIR)/$(PKG_NAME)-$(PKG_VERSION)/" -czf ./$(RPM_BUILD_DIR)/SOURCES/$(PKG_ARCHIVE) ./libbpf)
+	sed -i "/^Packager:/c\Packager: $(PKG_BUILD_GIT_USER) uid: $(PKG_BUILD_UID)" ./$(RPM_BUILD_DIR)/SPECS/$(SPEC_FILE)
+	sed -i "/^\%description$$/c\\%description\ngit-commit: $(PKG_BUILD_COMMIT)\ngit-msg: $(PKG_BUILD_GIT_MSG)" ./$(RPM_BUILD_DIR)/SPECS/$(SPEC_FILE)
+	rpmbuild -bb -D "_topdir $(shell pwd)/$(RPM_BUILD_DIR)" --verbose ./$(RPM_BUILD_DIR)/SPECS/$(SPEC_FILE)
