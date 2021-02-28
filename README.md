@@ -17,7 +17,7 @@ yum install --enablerepo=elrepo-kernel kernel-ml kernel-ml-{headers,devel,tools,
 yum install gcc-toolset-9 devtoolset-8 llvm-toolset binutils-devel readline-devel elfutils-libelf-devel
 ```
 ## iproute2
-error: No ELF library support compiled in. Use iproute2
+You may receive an error when using ip route *`error: No ELF library support compiled in`* If so, just upgrade
 ```
 git clone git://git.kernel.org/pub/scm/network/iproute2/iproute2.git
 cd iproute2/
