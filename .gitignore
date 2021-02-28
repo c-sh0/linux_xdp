@@ -54,3 +54,8 @@ dkms.conf
 
 #rpmbuild dir
 rpmbuild/
+
+#vim files 
+*~
+*.swp
+*.swo
