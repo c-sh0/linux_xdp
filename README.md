@@ -34,6 +34,10 @@ scl enable llvm-toolset-7 bash
 git submodule update --init
 make
 ```
+Update `libbpf` to latest upstream version, just do
+```
+git submodule update --remote --merge
+```
 
 ## Attaching the programs
 - Using iproute (Note: iproute does not have bpf/xdp capabilities on some older systems)
