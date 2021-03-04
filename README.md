@@ -30,7 +30,8 @@ scl enable llvm-toolset-7 bash
 https://wiki.centos.org/AdditionalResources/Repositories/SCL
 https://www.softwarecollections.org/en/scls/?search=Developer+Toolset
 #### Building Clang/LLVM from source
-Install to `/opt/llvm-x.x.x`
+Install to `/opt/llvm-x.x.x`   
+https://clang.llvm.org/get_started.html
 ```
 # Requires updated Cmake to build (using cmake from SCL repo should work)
 yum install llvm-toolset-7-cmake
@@ -54,7 +55,11 @@ cmake ../llvm-project/llvm \
 # install to /opt/llvm-VERSION
 cmake -DCMAKE_INSTALL_PREFIX=/opt/llvm-11.1.0 -P cmake_install.cmake
 ```
-https://clang.llvm.org/get_started.html
+Create symlinks (default command alternatives)
+```
+update-alternatives --install /usr/bin/clang clang /opt/llvm-11.1.0/bin/clang 50
+update-alternatives --install /usr/bin/llc llc /opt/llvm-11.1.0/bin/llc 50
+```
 
 ## iproute2
 You may receive an error when using ip route *`error: No ELF library support compiled in`* If so, just upgrade. Quick install to `/opt/iproute2`
