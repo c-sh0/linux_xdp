@@ -56,7 +56,8 @@ cmake ../llvm-project/llvm \
 # install to /opt/llvm-VERSION
 cmake -DCMAKE_INSTALL_PREFIX=/opt/llvm-11.1.0 -P cmake_install.cmake
 ```
-Create symlinks (default command alternatives)
+Create symlinks (default command alternatives)   
+https://azrael.digipen.edu/~mmead/www/mg/update-compilers/index.html
 ```
 update-alternatives --install /usr/bin/clang clang /opt/llvm-11.1.0/bin/clang 50
 update-alternatives --install /usr/bin/llc llc /opt/llvm-11.1.0/bin/llc 50
