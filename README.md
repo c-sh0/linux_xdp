@@ -2,9 +2,8 @@
 Linux XDP (eXpress Data Path)
 
 ## Description
-Development enviorment for building XDP programs. eBPF/XDP is in active development and the process for building/installing applications has and will certainly change.
-
-Recommended Reading:
+Development enviorment for building XDP programs. eBPF/XDP is in active development and the process for building/installing applications has and will certainly change.  
+Recommended Reading:  
 https://facebookmicrosites.github.io/bpf/blog/2020/02/19/bpf-portability-and-co-re.html#the-problem-of-bpf-portability
 
 Tested on:
