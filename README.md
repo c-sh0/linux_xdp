@@ -102,7 +102,7 @@ yum localinstall ./rpmbuild/RPMS/x86_64/libbpf-devel-0.1.0-1.x86_64.rpm
 ```
 
 ## Notes
-- These types of warning's can be ignored when calling `bpf_prog_load()`
+- These types of warning's can be ignored when calling `bpf_prog_load()`  
   https://github.com/libbpf/libbpf-bootstrap/issues/12#issuecomment-785303374
   ```
   libbpf: elf: skipping unrecognized data section(4) .rodata.str1.1
