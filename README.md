@@ -58,7 +58,7 @@ cmake -DCMAKE_INSTALL_PREFIX=/opt/llvm-11.1.0 -P cmake_install.cmake
 https://clang.llvm.org/get_started.html
 
 ## iproute2
-You may receive an error when using ip route *`error: No ELF library support compiled in`* If so, just upgrade. Quick install commands to `/opt/iproute2`
+You may receive an error when using ip route *`error: No ELF library support compiled in`* If so, just upgrade. Quick install to `/opt/iproute2`
 ```
 git clone git://git.kernel.org/pub/scm/network/iproute2/iproute2.git
 cd iproute2/
