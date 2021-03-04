@@ -20,7 +20,7 @@ yum install --enablerepo=elrepo-kernel kernel-ml
 yum install kernel-ml-{headers,devel,tools,tools-libs,tools-libs-devel}
 ```
 ##### Compilers
-It's best to use the latest availible compiler versions. Using gcc and clang/llvm from the Software Collections (SCL) repository may not work with `libbpf` 100% of the time. Your mileage may vary.
+It's best to use the latest available compiler versions. Using gcc and clang/llvm from the Software Collections (SCL) repository may not work with `libbpf` 100% of the time. Your mileage may vary.
 ```
 yum install centos-release-scl
 yum install gcc-toolset-9 devtoolset-8 llvm-toolset binutils-devel readline-devel elfutils-libelf-devel
