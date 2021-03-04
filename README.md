@@ -107,6 +107,17 @@ yum localinstall ./rpmbuild/RPMS/x86_64/libbpf-devel-0.1.0-1.x86_64.rpm
   ```
   libbpf: elf: skipping unrecognized data section(4) .rodata.str1.1
   ```
+- Default sysctls
+  ```
+  sysctl -a | grep bpf
+  
+  kernel.bpf_stats_enabled = 0
+  kernel.unprivileged_bpf_disabled = 0
+  net.core.bpf_jit_enable = 1
+  net.core.bpf_jit_harden = 0
+  net.core.bpf_jit_kallsyms = 1
+  net.core.bpf_jit_limit = 264241152
+  ```
 - Look into using any of the following upstream packages (compatibility issues?)
   - libbpf :- A mirror of bpf-next linux tree (incomplete?)
   - libxdp :- libxdp library for managing XDP programs
