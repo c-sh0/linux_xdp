@@ -1,14 +1,23 @@
-KERNEL_OBJ = simple_pass_kern.o
+kern-obj  = xdp_pass_kern
+user-prog = xdp_pass_user
 
 LLC	?= llc
 CLANG	?= clang
 CC	:= gcc
 
-BPF_CFLAGS ?= -I../libbpf/bpf/include/
+KERN_OBJ  = ${kern-obj:=.o}
+USER_PROG = ${user-prog}
 
-all: $(KERNEL_OBJ)
+LIBBPF_DIR	?= ../libbpf/bpf
+BPF_CFLAGS	?= -I$(LIBBPF_DIR)/include
+BPF_LDFLAGS	?= -L$(LIBBPF_DIR)/lib64
+BPF_LIBS	?= -l:libbpf.a -lelf -lz
 
-$(KERNEL_OBJ): %.o: %.c
+CFLAGS ?= -Wall -Wextra -Wunused -g
+
+all: $(KERN_OBJ) $(USER_PROG)
+
+$(KERN_OBJ): %.o: %.c
 	$(CLANG) -S \
 		-target bpf \
 		-D __BPF_TRACING__ \
@@ -21,5 +30,13 @@ $(KERNEL_OBJ): %.o: %.c
 		-O2 -emit-llvm -c -o ${@:.o=.ll} $<
 	$(LLC) -march=bpf -filetype=obj -o $@ ${@:.o=.ll}
 
+$(USER_PROG): %: %.c
+	$(CC) $(CFLAGS) $(BPF_CFLAGS) $(BPF_LDFLAGS) -o $@ $< $(BPF_LIBS)
+
 clean:
-	rm -f *.ll *.o
+	rm -f *.ll *.o $(user-prog)
+
+distclean: clean
+
+install:
+
