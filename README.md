@@ -108,7 +108,7 @@ yum localinstall ./rpmbuild/RPMS/x86_64/libbpf-devel-0.1.0-1.x86_64.rpm
   libbpf: elf: skipping unrecognized data section(4) .rodata.str1.1
   ```
   https://github.com/libbpf/libbpf-bootstrap/issues/12
-- Look at Using any of the following upstream packages (compatibility issues?)
+- Look into using any of the following upstream packages (compatibility issues?)
   - libbpf :- A mirror of bpf-next linux tree (incomplete?)
   - libxdp :- libxdp library for managing XDP programs
 
