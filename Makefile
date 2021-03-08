@@ -2,7 +2,7 @@ LLC	?= llc
 CLANG	?= clang
 CC	:= gcc
 
-SRC_DIRS = examples
+SRC_DIRS = simple_pass map_pinning
 
 LIBBPF_DIR   ?= libbpf
 LIBBPF_SRC   ?= $(LIBBPF_DIR)/src
