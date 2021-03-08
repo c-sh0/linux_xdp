@@ -59,3 +59,7 @@ rpmbuild/
 *~
 *.swp
 *.swo
+
+#binaries
+xdp_pass_user
+maps_ctl
