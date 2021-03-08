@@ -1,5 +1,5 @@
 # Pinned bpf map example
-* BPF maps will need to be pinned so that userspace applications can interact with these maps
+* BPF maps will need to be pinned so that userspace applications can interact with those maps
 
 ## Usage
 ```
