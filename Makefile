@@ -2,7 +2,7 @@ LLC	?= llc
 CLANG	?= clang
 CC	:= gcc
 
-SRC_DIRS = simple_pass map_pinning
+SRC_DIRS = simple_pass map_pinning port_ticker
 
 LIBBPF_DIR   ?= libbpf
 LIBBPF_SRC   ?= $(LIBBPF_DIR)/src

@@ -63,3 +63,5 @@ rpmbuild/
 #binaries
 xdp_pass_user
 maps_ctl
+ticker_ctl
+
