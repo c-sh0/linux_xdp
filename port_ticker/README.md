@@ -37,7 +37,7 @@ Usage: ticker_ctl [OPTIONS]
 
  Examples:
 
-    ticker_ctl -d eth0 -S                :- Install program on eth0 SKB mode
+    ticker_ctl -d eth0 -S               :- Install program on eth0 SKB mode
     ticker_ctl -d eth0 -i 192.168.1.20  :- Add ip 192.168.1.20 to the ignore list (return traffic from any outbound connections?)
     ticker_ctl -d eth0 -I 1             :- Enable ICMP responses
     ticker_ctl -d eth0 -t 200           :- Increase tracking threshold
