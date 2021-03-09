@@ -214,13 +214,7 @@ static __always_inline int chk_ipv4(void *data, __u64 nh_off, void *data_end) {
 			/* update reporting map */
 			if(val.change_cnt > s_data->threshold) {
 				struct ipaddr_info_t report_data;
-
-				/* todo?: the key is already the IP address so i don't think we'd have to store ip_addr = src_ip here.
-				 * when reporting from userspace, need to figure out if bpf_map_get_next_key() can walk the map using
-				 * unknown keys, untill then, just store the src ip_addr value data  as well */
 				report_data.change_cnt = val.change_cnt;
-				report_data.ip_addr = src_ip;
-
 				bpf_map_update_elem(&report_map, &src_ip, &report_data, BPF_ANY);
 
 				#if DEBUG_FLAG

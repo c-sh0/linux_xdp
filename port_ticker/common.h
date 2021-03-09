@@ -26,7 +26,6 @@ struct conn_queue_t {
 
 /* src ip address log, used for userspace reporting  */
 struct ipaddr_info_t {
-	__u32 ip_addr; /* src ip */
 	__u32 change_cnt; /* port changed count */
 };
 

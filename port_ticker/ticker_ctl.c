@@ -232,10 +232,7 @@ int get_ipv4_str(uint32_t addr, char *buf) {
 	return(1);
 }
 
-/* todo?: the map key is already the IP address.
- * will need to figure out if bpf_map_get_next_key() can walk the map
- * given we don't know the key value (BPF_MAP_TYPE_LRU_HASH)
- * its gotta be something simple */
+/* bpf_map_get_next_key() `next_key` contains the key's value */
 void do_report(int map_fd) {
 	struct ipaddr_info_t data;
 	char ip[INET_ADDRSTRLEN];
@@ -243,16 +240,15 @@ void do_report(int map_fd) {
 
 	//printf("[DEBUG]:[%s:%d] Do report map_fd:%d\n",__FILE__,__LINE__,map_fd);
 
-	printf("\nReport:\n\n--------------------------------------------------\n");
-	printf("xx\t|\tSource IP\t|  Change count\n");
-	printf("--------------------------------------------------\n");
+	printf("\nReport:\n\n--------------------------------------\n");
+	printf("Source IP\t|  Change count\n");
+	printf("--------------------------------------\n");
 
 	while(bpf_map_get_next_key(map_fd, &key, &next_key) == 0) {
- 		bpf_map_lookup_elem(map_fd, &next_key, &data);
 
-		get_ipv4_str(data.ip_addr, ip);
-
- 		printf("%u\t|\t%s\t|  %u\n",key,ip,data.change_cnt);
+		bpf_map_lookup_elem(map_fd, &next_key, &data);
+		get_ipv4_str(next_key, ip);
+		printf("%s\t|  %u\n",ip,data.change_cnt);
 
 		key = next_key;
  	}
