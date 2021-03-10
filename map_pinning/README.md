@@ -41,7 +41,7 @@ You can pin maps just by using bpftool
 ```
 yum install bpftool
 ```
-In this example the following map declaration was used
+In this example, the following map declaration was used
 ```
 struct bpf_map_def SEC("maps") my_map = {
         .type        = BPF_MAP_TYPE_HASH,
