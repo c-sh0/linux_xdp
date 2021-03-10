@@ -37,4 +37,36 @@ Usage: maps_ctl [OPTIONS]
 * Remove program
     ./maps_ctl -d lo -r
 ```
+## Pinning maps using bpftool
+You can pin maps just by using bpftool, for example
+```
+* Load bpf kernel object (iproute2)
+    ip link set dev lo xdp obj xdp_prog_kern.o sec xdp_prog
+
+* Get map id
+    bpftool map
+    228: hash  flags 0x0
+    key 4B  value 16B  max_entries 1  memlock 4096B
+
+* Pin the map using map id
+   bpftool map pin id 228 /sys/fs/bpf/test_map
+
+   ls -la /sys/fs/bpf/test_map
+   -rw-------. 1 root root 0 Mar 04 01:40 /sys/fs/bpf/test_map
+
+   bpftool map dump pinned /sys/fs/bpf/test_map
+   Found 0 elements
+
+* Add data, in hex, to the map. The key in this example is just 0 and value is the string: "Test123Test12346"
+    bpftool map update id 228 key 0 0 0 0 value 0x54 0x65 0x73 0x74 0x31 0x32 0x33 0x54 0x65 0x73 0x74 0x31 0x32 0x33 0x34 0x36
+
+* Verify it worked
+    bpftool map dump pinned /sys/fs/bpf/test_map
+    key: 00 00 00 00  value: 54 65 73 74 31 32 33 54  65 73 74 31 32 33 34 36
+    Found 1 element
+
+* Cleanup
+    ip link set dev lo xdp off
+    rm -f /sys/fs/bpf/test_map
+```
 
