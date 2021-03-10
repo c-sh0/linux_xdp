@@ -37,9 +37,18 @@ Usage: maps_ctl [OPTIONS]
     ./maps_ctl -d lo -r
 ```
 ## Pinning maps using bpftool
-You can pin maps just by using bpftool, for example
+You can pin maps just by using bpftool
 ```
 yum install bpftool
+```
+In this example the following map declaration was used
+```
+struct bpf_map_def SEC("maps") test_map = {
+        .type        = BPF_MAP_TYPE_HASH,
+        .key_size    = sizeof(__u32),
+        .value_size  = 16 * sizeof(char),
+        .max_entries = 1,
+};
 ```
 ```
 * Load the kernel object file (iproute2)
