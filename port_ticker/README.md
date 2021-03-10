@@ -1,5 +1,5 @@
 # port_ticker
-Kinda like `netstat -an` to see who is connected but, just keep track of any connection attempts being made to any port (open or not)
+Keep track of connection attempts being made to destination port (listening or not). If a subsequent connection is made from the same source address to a different destination port, log it. 
  
 ## Tested on
 * CentOS 7.9.2009
