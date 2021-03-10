@@ -40,7 +40,7 @@ Usage: maps_ctl [OPTIONS]
 ## Pinning maps using bpftool
 You can pin maps just by using bpftool, for example
 ```
-* Load bpf kernel object (iproute2)
+* Load the kernel object file (iproute2)
     ip link set dev lo xdp obj xdp_prog_kern.o sec xdp_prog
 
 * Get map id
