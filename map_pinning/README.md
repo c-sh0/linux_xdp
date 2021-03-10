@@ -60,8 +60,7 @@ bpftool map
 228: hash  flags 0x0
     key 4B  value 16B  max_entries 1  memlock 4096B
 ```
-Pin the map using map id   
-Note: /sys/fs/bpf/<map_name> differs from the map declaration in the kernel program. This can be convenient since <map_name> can be anything you want
+Pin the map using map id (note: /sys/fs/bpf/<map_name> differs from the map declaration in the kernel program. This can be convenient since <map_name> can be anything you want)
 ```          
 bpftool map pin id 228 /sys/fs/bpf/test_map
 
