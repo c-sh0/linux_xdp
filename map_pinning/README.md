@@ -43,7 +43,7 @@ yum install bpftool
 ```
 In this example the following map declaration was used
 ```
-struct bpf_map_def SEC("maps") test_map = {
+struct bpf_map_def SEC("maps") my_map = {
         .type        = BPF_MAP_TYPE_HASH,
         .key_size    = sizeof(__u32),
         .value_size  = 16 * sizeof(char),
@@ -59,7 +59,8 @@ struct bpf_map_def SEC("maps") test_map = {
     228: hash  flags 0x0
     key 4B  value 16B  max_entries 1  memlock 4096B
 
-* Pin the map using map id (note the pinned map name. this can be convenient since path/to/map/name can be anything you want)
+* Pin the map using map id
+* note: /sys/fs/bpf/<map_name> differs from the map declaration in the kernel program, This can be convenient since <map_name> can be anything you want
    bpftool map pin id 228 /sys/fs/bpf/test_map
 
    ls -la /sys/fs/bpf/test_map
