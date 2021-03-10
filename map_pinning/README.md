@@ -52,7 +52,7 @@ struct bpf_map_def SEC("maps") test_map = {
 ```
 ```
 * Load the kernel object file (iproute2)
-    ip link set dev lo xdp obj xdp_prog_kern.o sec xdp_prog
+    ip link set dev lo xdp obj maps_kernel.o sec maps_simple
 
 * Get map id
     bpftool map
