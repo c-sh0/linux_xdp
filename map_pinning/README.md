@@ -24,7 +24,6 @@ Usage: maps_ctl [OPTIONS]
     [INFO]:[maps_ctl.c:304] - Lookup: map_fd:4 value1:0 value2:0
     [INFO]:[maps_ctl.c:314] - Update: map_fd:4 value1:123 value2:8888
 
-
 * Check kernel program can read the values (send some traffic to the interface)
     ping 127.0.0.1
     PING 127.0.0.1 (127.0.0.1) 56(84) bytes of data.
