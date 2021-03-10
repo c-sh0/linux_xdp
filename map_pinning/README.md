@@ -59,7 +59,7 @@ struct bpf_map_def SEC("maps") test_map = {
     228: hash  flags 0x0
     key 4B  value 16B  max_entries 1  memlock 4096B
 
-* Pin the map using map id
+* Pin the map using map id (note the pinned map name. this can be convenient since path/to/map/name can be anything you want)
    bpftool map pin id 228 /sys/fs/bpf/test_map
 
    ls -la /sys/fs/bpf/test_map
