@@ -48,7 +48,7 @@ Simple program to show you can process/store packet payloads.
     curl-6265    [001] d.s1 100477.645827: bpf_trace_printk: [DEBUG]: sport:35318 dport:80
     curl-6265    [001] d.s1 100477.645827: bpf_trace_printk: [DEBUG]: payload = GET /IPv6 HTTP/1.1
 
-* map data (in hex)
+* View map data (in hex)
     bpftool map dump id 68
     key:
     00 00 00 00
