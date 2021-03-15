@@ -1,5 +1,5 @@
 # Process payloads - DPI (Deep Packet Inspection)
-Simple program to show you can process/store packet payloads.
+Simple program to show how you can process/store packet payloads.
 * Creates a simple map to store the payload
 * Supports IPV6/IPv4
 * UDP and TCP
